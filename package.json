@@ -1,0 +1,27 @@
+{
+  "name": "frontendquiz",
+  "version": "1.0.0",
+  "description": "![Design preview for the Frontend quiz app coding challenge](./preview.jpg)",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:sass": "sass src/main.scss src/main.css", 
+    "watch:sass": "sass --watch src/main.scss:src/main.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bojanognjen/Frontend-Quiz-App.git"
+  },
+  "author": "Bojan Lukic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bojanognjen/Frontend-Quiz-App/issues"
+  },
+  "homepage": "https://github.com/bojanognjen/Frontend-Quiz-App#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  },
+  "devDependencies": {
+    "sass": "^1.86.1"
+  }
+}

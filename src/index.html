@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="style.css"/>
+
+    <title>Frontend Mentor | Frontend quiz app</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <header class="header">
+        <div class="header__category">
+          <img class="category__img" src="" alt="Image">
+          <span class="category__title"></span>
+        </div>
+        <div class="header__switch">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+          </div>          
+        </div>
+      </header>
+      <main class="main">
+        <div class="main__text">
+          <h1 class="main__title">Welcome to the 
+            <span class="title__span">Frontend Quiz</span>
+          </h1>
+          <p class="main__subtitle">Pick a subject to get started.</p>
+          <progress class="main__progress"></progress>
+        </div>
+        <div class="main__options">
+          <div class="option-a">
+            <img src="assets/images/icon-html.svg" alt="A">
+            <span>HTML</span>
+          </div>
+          <div class="option-b">
+            <img src="assets/images/icon-css.svg" alt="B">
+            <span>CSS</span>
+          </div>
+          <div class="option-c">
+            <img src="assets/images/icon-js.svg" alt="C">
+            <span>Javascript</span>
+          </div>
+          <div class="option-d">
+            <img src="assets/images/icon-accessibility.svg" alt="D">
+            <span>Accessibility</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Quiz menu start -->
+
+    Welcome to the Frontend Quiz! Pick a subject to get started. HTML CSS
+    JavaScript Accessibility
+
+    <!-- Quiz menu end -->
+
+    <!-- Quiz question start -->
+
+    Question
+    <!-- number -->
+    of 10 A B C D Submit answer
+
+    <!-- Quiz question end -->
+
+    <!-- Quiz completed start -->
+
+    Quiz completed You scored...
+
+    <!-- score -->
+    out of 10
+
+    <!-- Quiz completed end -->
+     <script src="script.js"></script>
+  </body>
+</html>

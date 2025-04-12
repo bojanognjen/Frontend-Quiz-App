@@ -10,49 +10,86 @@
       sizes="32x32"
       href="./assets/images/favicon-32x32.png"
     />
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="style.css" />
 
     <title>Frontend Mentor | Frontend quiz app</title>
   </head>
   <body>
-
     <div class="container">
       <header class="header">
         <div class="header__category">
-          <img class="category__img" src="" alt="Image">
+          <img class="category__img" src="" alt="Image" />
           <span class="category__title"></span>
         </div>
         <div class="header__switch">
+          <img
+            src="assets/images/icon-sun-light.svg"
+            alt="Sun light"
+            class="light"
+          />
+          <img
+            src="assets/images/icon-sun-dark.svg"
+            alt="Sun dark"
+            class="dark"
+          />
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-            <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-          </div>          
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckChecked"
+              checked
+            />
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckChecked"
+            ></label>
+          </div>
+          <img
+            src="assets/images/icon-moon-light.svg"
+            alt="Moon light"
+            class="light"
+          />
+          <img
+            src="assets/images/icon-moon-dark.svg"
+            alt="Moon dark"
+            class="dark"
+          />
         </div>
       </header>
       <main class="main">
         <div class="main__text">
-          <h1 class="main__title">Welcome to the 
-            <span class="title__span">Frontend Quiz</span>
+          <h1 class="main__title">
+            Welcome to the<br />
+            <span class="title__span">Frontend Quiz!</span>
           </h1>
           <p class="main__subtitle">Pick a subject to get started.</p>
           <progress class="main__progress"></progress>
         </div>
         <div class="main__options">
           <div class="option-a">
-            <img src="assets/images/icon-html.svg" alt="A">
+            <div>
+              <img src="assets/images/icon-html.svg" alt="A" />
+            </div>
             <span>HTML</span>
           </div>
           <div class="option-b">
-            <img src="assets/images/icon-css.svg" alt="B">
+            <div>
+              <img src="assets/images/icon-css.svg" alt="B" />
+            </div>
             <span>CSS</span>
           </div>
           <div class="option-c">
-            <img src="assets/images/icon-js.svg" alt="C">
+            <div>
+              <img src="assets/images/icon-js.svg" alt="C" />
+            </div>
             <span>Javascript</span>
           </div>
           <div class="option-d">
-            <img src="assets/images/icon-accessibility.svg" alt="D">
+            <div>
+              <img src="assets/images/icon-accessibility.svg" alt="D" />
+            </div>
             <span>Accessibility</span>
           </div>
         </div>
@@ -82,6 +119,6 @@
     out of 10
 
     <!-- Quiz completed end -->
-     <script src="script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

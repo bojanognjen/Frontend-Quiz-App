@@ -14,6 +14,11 @@
   src: url("assets/fonts/static/Rubik-Italic.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Rubik Light";
+  src: url("assets/fonts/static/Rubik-Light.ttf") format("truetype");
+}
+
 :root {
   /* ===================== */
   /*        COLORS         */
@@ -156,12 +161,36 @@ body {
     background-size: cover;
 }
 
+.container {
+  padding: 0 2.4rem;
+}
+
 .header {
     padding: var(--spacing-200) var(--spacing-300);
+    display: flex;
+    padding: 2.6rem 0;
 }
 
 .header__category {
     display: none;
+}
+
+.header__switch {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  width: 8rem;
+  height: 2rem;
+  justify-content: space-between;
+}
+
+.header__switch img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.dark {
+  display: none;
 }
 
 .form-switch .form-check-input {
@@ -169,10 +198,90 @@ body {
   border: none;
   --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 1.0%29'/%3e%3c/svg%3e");
   background-image: var(--bs-form-switch-bg);
+  width: 3.2rem;
+  height: 2rem;
 }
 
 .form-check-input:focus {
   box-shadow: none;
   --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 1.0%29'/%3e%3c/svg%3e");
   background-image: var(--bs-form-switch-bg);
+}
+
+.main {
+  padding: 3.2rem 0;
+  display: grid;
+  gap: 4rem;
+}
+
+.main__title {
+  font-size: 4rem;
+  font-family: 'Rubik Light';
+  margin-bottom: 1.6rem;
+}
+
+.title__span {
+  font-family: 'Rubik Regular';
+  font-weight: 900;
+}
+
+.main__subtitle {
+  font-family: 'Rubik Italic';
+  font-size: 1.4rem;
+  line-height: 150%;
+  color: var(--blue-300);
+  margin: 0;
+}
+
+.main__progress {
+  display: none;
+}
+
+.main__options {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.main__options > * {
+  background-color: var(--blue-850);
+  border-radius: 1.2rem;
+  height: 7.2rem;
+  padding: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.main__options > * > div {
+  width: 4rem;
+  height: 4rem;
+  border-radius: .6rem;
+  display: grid;
+  place-content: center;
+}
+
+.main__options > * > div > img {
+  width: 2.857rem;
+  height: 2.857rem
+}
+
+.main__options > .option-a > div { 
+  background-color: var(--orange-50);
+}
+
+.main__options > .option-b > div { 
+  background-color: var(--green-100);
+}
+
+.main__options > .option-c > div { 
+  background-color: var(--blue-50);
+}
+
+.main__options > .option-d > div { 
+  background-color: var(--purple-100);
+}
+
+.main__options > * > span {
+  font-size: 1.8rem;
+  font-weight: 600;
 }

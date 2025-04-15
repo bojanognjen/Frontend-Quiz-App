@@ -285,3 +285,12 @@ body {
   font-size: 1.8rem;
   font-weight: 600;
 }
+
+/* Ovdje ces upisati kako treba da izgleda selektovani odgovor */
+.selected {
+  border: 2px solid lightsalmon;
+}
+
+.question-container {
+  border: 1px solid lightgreen;
+}

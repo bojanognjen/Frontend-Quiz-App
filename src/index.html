@@ -19,7 +19,9 @@
     <div class="container">
       <header class="header">
         <div class="header__category">
-          <img class="category__img" src="" alt="Image" />
+          <div class="icon__frame">
+            <img class="category__img" src="" alt="Image" />
+          </div>
           <span class="category__title"></span>
         </div>
         <div class="header__switch">
@@ -65,61 +67,37 @@
             <span class="title__span">Frontend Quiz!</span>
           </h1>
           <p class="main__subtitle">Pick a subject to get started.</p>
-          <progress class="main__progress"></progress>
         </div>
         <div class="main__options">
           <div class="option-a">
-            <div>
-              <img src="assets/images/icon-html.svg" alt="A" />
+            <div class="icon__frame">
+              <img class="icon" src="assets/images/icon-html.svg" alt="A" />
             </div>
-            <span>HTML</span>
+            <span class="category__title">HTML</span>
           </div>
           <div class="option-b">
             <div>
               <img src="assets/images/icon-css.svg" alt="B" />
             </div>
-            <span>CSS</span>
+            <span class="category__title">CSS</span>
           </div>
           <div class="option-c">
             <div>
               <img src="assets/images/icon-js.svg" alt="C" />
             </div>
-            <span>Javascript</span>
+            <span class="category__title">Javascript</span>
           </div>
           <div class="option-d">
             <div>
               <img src="assets/images/icon-accessibility.svg" alt="D" />
             </div>
-            <span>Accessibility</span>
+            <span class="category__title">Accessibility</span>
           </div>
         </div>
       </main>
       <div class="preview"></div>
     </div>
 
-    <!-- Quiz menu start -->
-
-    Welcome to the Frontend Quiz! Pick a subject to get started. HTML CSS
-    JavaScript Accessibility
-
-    <!-- Quiz menu end -->
-
-    <!-- Quiz question start -->
-
-    Question
-    <!-- number -->
-    of 10 A B C D Submit answer
-
-    <!-- Quiz question end -->
-
-    <!-- Quiz completed start -->
-
-    Quiz completed You scored...
-
-    <!-- score -->
-    out of 10
-
-    <!-- Quiz completed end -->
     <script src="script.js"></script>
   </body>
 </html>

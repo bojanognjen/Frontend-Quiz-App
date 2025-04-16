@@ -1,3 +1,9 @@
+let headerCategory = document.querySelector('.header__category');
+let categoryImg = document.querySelector('.category__img');
+let categoryTitle = document.querySelector('.category__title');
+let iconFrame = document.querySelector('.icon__frame');
+
+const main = document.querySelector('.main');
 let options = document.querySelectorAll(".main__options > div");
 const preview = document.querySelector('.preview');
 
@@ -44,6 +50,30 @@ async function fetchData(url) {
     showQuestion(questions[currentQuestionIndex]);
   }
 
+function showHeader(quiz) {
+    headerCategory.style.display = 'flex';
+    categoryTitle.textContent = quiz.title;
+    categoryImg.setAttribute('src',`${quiz.icon}`);
+    categoryImg.classList.add("icon");
+
+    switch (quiz.title.toLowerCase()) {
+      case "html":
+        iconFrame.style.backgroundColor = 'hsl(27deg 100% 96%)';
+        break;
+      case "css":
+        iconFrame.style.backgroundColor = 'hsl(151deg 88% 94%)';
+        break;
+      case "javascript":
+        iconFrame.style.backgroundColor = 'hsl(225deg 100% 96%)';
+        break;
+      case "accessibility":
+        iconFrame.style.backgroundColor = 'hsl(278deg 100% 95%)';
+        break;
+    }
+    
+}
+
+
 async function startQuiz() {
     try {
         let quizData = await fetchData('data.json');
@@ -55,6 +85,9 @@ async function startQuiz() {
           return;
         }
         globalQuestions = quizzes[quizIndex].questions;
+        main.style.display = 'none';
+        console.log(quizzes[quizIndex]);
+        showHeader(quizzes[quizIndex]);
         showQuestion(globalQuestions[currentQuestionIndex])
     } catch (error) {
         console.error('Failed to start quiz:', error);
@@ -69,13 +102,11 @@ async function startQuiz() {
   }
   
   function showQuestion(question) {
-    console.log(question.options.map((opt, idx) => 
-        `<li data-index="${idx}">${opt}</li>`
-      ).join(""));
     preview.innerHTML = `
       <div class="question-container">
         <p>Question ${currentQuestionIndex + 1} of ${globalQuestions.length}</p>
-        <h2>${question.question}</h2>
+        <h2 class="question__title">${question.question}</h2>
+        <progress class="main__progress"></progress>
         <ul class="answers">
           ${question.options.map((opt, idx) => 
             `<li data-index="${idx}">${escapeHTML(opt)}</li>`
@@ -84,6 +115,13 @@ async function startQuiz() {
         <button id="submitAnswer">Submit answer</button>
       </div>
     `;
+    preview.classList.add('main');
+
+    let iterationParagraph = document.querySelector('.question-container p');
+    iterationParagraph.classList.add("main__subtitle");
+
+    // let questionTitle = document.querySelector('.question-container h2');
+    // questionTitle.style.margin = ""
   
     document.querySelectorAll(".answers li").forEach(li => {
       li.addEventListener("click", () => {

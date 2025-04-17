@@ -86,7 +86,6 @@ async function startQuiz() {
         }
         globalQuestions = quizzes[quizIndex].questions;
         main.style.display = 'none';
-        console.log(quizzes[quizIndex]);
         showHeader(quizzes[quizIndex]);
         showQuestion(globalQuestions[currentQuestionIndex])
     } catch (error) {
@@ -106,7 +105,7 @@ async function startQuiz() {
       <div class="question-container">
         <p>Question ${currentQuestionIndex + 1} of ${globalQuestions.length}</p>
         <h2 class="question__title">${question.question}</h2>
-        <progress class="main__progress"></progress>
+        <div class="main__progress"></div>
         <ul class="answers">
           ${question.options.map((opt, idx) => 
             `<li data-index="${idx}">${escapeHTML(opt)}</li>`
@@ -115,6 +114,8 @@ async function startQuiz() {
         <button id="submitAnswer">Submit answer</button>
       </div>
     `;
+
+    // let progressBar = document.querySelector('.main__progress');
     preview.classList.add('main');
 
     let iterationParagraph = document.querySelector('.question-container p');
@@ -137,9 +138,16 @@ async function startQuiz() {
       if (selected.textContent == question.answer) {
         score++;
       }
-      console.log(score);
   
       currentQuestionIndex++;
+
+      // setInterval(()=> {
+      //   const computedStyle = getComputedStyle(progressBar);
+      //   const width = parseFloat(computedStyle.getPropertyValue
+      //     ('--width')) || 0
+      //     progressBar.style.setProperty('--width', width + .1)
+      // }, 5);
+
       if (currentQuestionIndex < globalQuestions.length) {
         listQuestions(globalQuestions);
       } else {
@@ -150,6 +158,7 @@ async function startQuiz() {
 
   function showResults() {
     const main = document.querySelector(".main");
+    main.style.display = 'block';
     main.innerHTML = `
       <div class="result">
         <h2>Quiz Completed</h2>

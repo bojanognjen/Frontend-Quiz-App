@@ -123,7 +123,7 @@ async function startQuiz() {
                 ${escapeHTML(opt)}
             </li>`
           ).join("")}
-          <button class="option category__title" id="submitAnswer">Submit answer</button>
+          <button class="option category__title submitAnswer">Submit answer</button>
         </ul>
         <div class="alert-message">
           <img src="assets/images/icon-error.svg">
@@ -172,7 +172,7 @@ async function startQuiz() {
   
     const alertMessage = document.querySelector('.alert-message');
 
-    document.getElementById("submitAnswer").addEventListener("click", () => {
+    document.querySelector(".submitAnswer").addEventListener("click", () => {
       const selected = document.querySelector(".answers li.selected");
       if (!selected) {
         alertMessage.style.display = 'flex';
@@ -200,14 +200,17 @@ async function startQuiz() {
       <div class="result">
         <h2>Quiz Completed</h2>
         <h3>You scored...</h3>
-        <div class="header__category" id="headerCategory2">
-          <div class="icon__frame" id="iconFrame2">
-            <img class="category__img" src="" alt="Image" id="categoryImg2" />
+        <div class="result__container">
+          <div class="header__category" id="headerCategory2">
+            <div class="icon__frame" id="iconFrame2">
+              <img class="category__img" src="" alt="Image" id="categoryImg2" />
+            </div>
+            <span class="category__title" id="categoryTitle2"></span>
           </div>
-          <span class="category__title" id="categoryTitle2"></span>
+          <h4>${score}</h4>
+          <p>out of 10</p>
         </div>
-        <p>${score} out of 10</p>
-        <button id="restart">Restart</button>
+        <button class="submitAnswer" id="restart">Play again</button>
       </div>
     `;
     preview.style.display = 'none';

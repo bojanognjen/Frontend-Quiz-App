@@ -342,16 +342,17 @@ body {
   padding: 0;
 }
 
-#submitAnswer {
+.submitAnswer {
   background-color: var(--purple-600);
   color: var(--white);
   display: grid;
   place-content: center;
   border: none;
   height: 5.6rem;
+  border-radius: 1.2rem;
 }
 
-#submitAnswer:hover {
+.submitAnswer:hover {
   background-color: hsl(277deg 91% 85%);
 }
 
@@ -373,11 +374,45 @@ body {
   margin-left: .8rem;
 }
 
+.result__container{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--blue-850);
+  padding: 3.2rem;
+  align-items: center;
+  border-radius: 1.2rem;
+}
+
+.result h2 {
+  font-family: 'Rubik Light';
+  font-size: 4rem;
+}
+
 .result h3{
+  font-family: 'Rubik Medium';
+  font-size: 4rem;
   margin-bottom: 4rem;
 }
 
+.result h4 {
+  font-family: 'Rubik Medium';
+  font-size: 8.8rem;
+  margin: 1.6rem 0;
+}
+
 .result p {
-  background-color: var(--blue-850);
-  padding: 3.2rem;
+  font-family: 'Rubik Regular';
+  font-sizE: 1.8rem;
+  color: var(--blue-300);
+  margin: 0;
+}
+
+.result button {
+  width: 100%;
+}
+
+#restart {
+  margin-top: 1.6rem;
+  font-size: 1.8rem;
+  font-weight: 600;
 }

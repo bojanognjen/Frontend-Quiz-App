@@ -181,15 +181,29 @@ async function startQuiz() {
 
     if (selected.dataset.label == question.answer) {
         score++;
+        selected.classList.add('correct-border');
+        let iconFrame = selected.querySelector('.icon__frame');
+        iconFrame.classList.add('correct-frame');
+        selected.innerHTML += `<img class="grade" src="assets/images/icon-correct.svg" alt="Correct">`;
+      } else {
+        selected.classList.add('incorrect-border');
+        let iconFrame = selected.querySelector('.icon__frame');
+        iconFrame.classList.add('incorrect-frame');
+        selected.innerHTML += `<img class="grade" src="assets/images/icon-incorrect.svg" alt="Incorrect">`;
+        let answers = document.querySelectorAll('.answers li');
+        for(let answer of answers) {
+          answer.dataset.label == question.answer ? answer.innerHTML += `<img class="grade" src="assets/images/icon-correct.svg" alt="Correct">` : null;
+        }
       }
   
       currentQuestionIndex++;
-
-      if (currentQuestionIndex < globalQuestions.length) {
-        listQuestions(globalQuestions);
-      } else {
-        showResults(quizGlobal);
-      }
+      setTimeout(()=>{
+        if (currentQuestionIndex < globalQuestions.length) {
+          listQuestions(globalQuestions);
+        } else {
+          showResults(quizGlobal);
+        }
+      },2100);
     });
   }
 

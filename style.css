@@ -299,8 +299,14 @@ body {
   align-items: normal;
 }
 
-.selected {
-  border: 2px solid lightsalmon;
+.selected,
+.option:hover {
+  outline: 3px solid var(--purple-600);
+}
+
+.answers li.selected .option-frame {
+  background-color: var(--purple-600);
+  color: var(--white);
 }
 
 .question__title {
@@ -416,3 +422,28 @@ body {
   font-size: 1.8rem;
   font-weight: 600;
 }
+
+.correct-border {
+  outline: 3px solid var(--green-500);
+}
+
+.correct-frame {
+  background-color: var(--green-500) !important;
+  color: var(--white) !important;
+}
+
+.grade {
+  height: 4rem;
+  width: 4rem;
+  margin-left: auto;
+}
+
+.incorrect-border {
+  outline: 3px solid var(--red-500);
+}
+
+.incorrect-frame {
+  background-color: var(--red-500) !important;
+  color: var(--white) !important;
+}
+

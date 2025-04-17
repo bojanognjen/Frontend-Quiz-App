@@ -104,25 +104,50 @@ async function startQuiz() {
     preview.innerHTML = `
       <div class="question-container">
         <p>Question ${currentQuestionIndex + 1} of ${globalQuestions.length}</p>
-        <h2 class="question__title">${question.question}</h2>
+        <h2 class="question__title">${escapeHTML(question.question)}</h2>
         <div class="main__progress"></div>
         <ul class="answers">
           ${question.options.map((opt, idx) => 
-            `<li data-index="${idx}">${escapeHTML(opt)}</li>`
+            `<li class="category__title" data-index="${idx}" data-label="${escapeHTML(opt)}">
+                <div class="icon__frame option-frame"></div>
+                ${escapeHTML(opt)}
+            </li>`
           ).join("")}
+          <button class="option category__title" id="submitAnswer">Submit answer</button>
         </ul>
-        <button id="submitAnswer">Submit answer</button>
       </div>
     `;
 
-    // let progressBar = document.querySelector('.main__progress');
     preview.classList.add('main');
+    let li = document.querySelectorAll('.answers li');
+    let divLi = document.querySelectorAll('.option-frame');
+
+    for (let l of li) {
+      l.classList.add('option');
+    }
+
+    let alphabet = ["A","B","C","D"];
+
+    for (let i = 0; i < divLi.length; i++) {
+      divLi[i].textContent = alphabet[i];
+    }
 
     let iterationParagraph = document.querySelector('.question-container p');
     iterationParagraph.classList.add("main__subtitle");
 
-    // let questionTitle = document.querySelector('.question-container h2');
-    // questionTitle.style.margin = ""
+    let progressBar = document.querySelector('.main__progress');
+    let target = currentQuestionIndex * 10;
+    progressBar.style.setProperty('--width', target-10);
+   const intervalId = setInterval(()=> {
+     const computedStyle = getComputedStyle(progressBar);
+     const width = parseFloat(computedStyle.getPropertyValue('--width')) || 0;
+
+     progressBar.style.setProperty('--width', width + .1);
+     if (width >= target) {
+       clearInterval(intervalId);
+       return;               // exit early so you don’t bump past 100
+     }
+}, 2);
   
     document.querySelectorAll(".answers li").forEach(li => {
       li.addEventListener("click", () => {
@@ -135,18 +160,12 @@ async function startQuiz() {
       const selected = document.querySelector(".answers li.selected");
       if (!selected) return alert("Please select an answer!");
     //   const selectedIndex = parseInt(selected.dataset.index);
-      if (selected.textContent == question.answer) {
+
+    if (selected.dataset.label == question.answer) {
         score++;
       }
   
       currentQuestionIndex++;
-
-      // setInterval(()=> {
-      //   const computedStyle = getComputedStyle(progressBar);
-      //   const width = parseFloat(computedStyle.getPropertyValue
-      //     ('--width')) || 0
-      //     progressBar.style.setProperty('--width', width + .1)
-      // }, 5);
 
       if (currentQuestionIndex < globalQuestions.length) {
         listQuestions(globalQuestions);

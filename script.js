@@ -1,12 +1,8 @@
-let headerCategory = document.querySelector('.header__category');
-let categoryImg = document.querySelector('.category__img');
-let categoryTitle = document.querySelector('.category__title');
-let iconFrame = document.querySelector('.icon__frame');
-
 const main = document.querySelector('.main');
 let options = document.querySelectorAll(".main__options > div");
 const preview = document.querySelector('.preview');
 
+let quizGlobal = null;
 let globalQuestions = null;
 let currentCategory = null;
 let currentQuestionIndex = 0;
@@ -51,26 +47,39 @@ async function fetchData(url) {
   }
 
 function showHeader(quiz) {
-    headerCategory.style.display = 'flex';
-    categoryTitle.textContent = quiz.title;
-    categoryImg.setAttribute('src',`${quiz.icon}`);
-    categoryImg.classList.add("icon");
+  
+  let headerCategory = document.querySelectorAll('.header__category');
+  let categoryImg = document.querySelectorAll('.category__img');
+  let categoryTitle = document.querySelectorAll('.category__title');
+  let iconFrame = document.querySelectorAll('.icon__frame');
 
+  headerCategory.forEach(el => {
+    el.style.display = 'flex';
+  });
+  categoryTitle.forEach(el => {
+    el.textContent = quiz.title;
+  });
+  categoryImg.forEach(el => {
+    el.setAttribute('src', `${quiz.icon}`);
+    el.classList.add("icon");
+  });
+    
+  iconFrame.forEach(el => {
     switch (quiz.title.toLowerCase()) {
       case "html":
-        iconFrame.style.backgroundColor = 'hsl(27deg 100% 96%)';
+        el.style.backgroundColor = 'hsl(27deg 100% 96%)';
         break;
       case "css":
-        iconFrame.style.backgroundColor = 'hsl(151deg 88% 94%)';
+        el.style.backgroundColor = 'hsl(151deg 88% 94%)';
         break;
       case "javascript":
-        iconFrame.style.backgroundColor = 'hsl(225deg 100% 96%)';
+        el.style.backgroundColor = 'hsl(225deg 100% 96%)';
         break;
       case "accessibility":
-        iconFrame.style.backgroundColor = 'hsl(278deg 100% 95%)';
+        el.style.backgroundColor = 'hsl(278deg 100% 95%)';
         break;
     }
-    
+  });
 }
 
 
@@ -87,7 +96,8 @@ async function startQuiz() {
         globalQuestions = quizzes[quizIndex].questions;
         main.style.display = 'none';
         showHeader(quizzes[quizIndex]);
-        showQuestion(globalQuestions[currentQuestionIndex])
+        showQuestion(globalQuestions[currentQuestionIndex]);
+        quizGlobal = quizzes[quizIndex];
     } catch (error) {
         console.error('Failed to start quiz:', error);
     }
@@ -115,6 +125,10 @@ async function startQuiz() {
           ).join("")}
           <button class="option category__title" id="submitAnswer">Submit answer</button>
         </ul>
+        <div class="alert-message">
+          <img src="assets/images/icon-error.svg">
+          <span class="alert-select category__title">Please select an answer</span>
+        </div>
       </div>
     `;
 
@@ -156,9 +170,13 @@ async function startQuiz() {
       });
     });
   
+    const alertMessage = document.querySelector('.alert-message');
+
     document.getElementById("submitAnswer").addEventListener("click", () => {
       const selected = document.querySelector(".answers li.selected");
-      if (!selected) return alert("Please select an answer!");
+      if (!selected) {
+        alertMessage.style.display = 'flex';
+      };
     //   const selectedIndex = parseInt(selected.dataset.index);
 
     if (selected.dataset.label == question.answer) {
@@ -170,23 +188,31 @@ async function startQuiz() {
       if (currentQuestionIndex < globalQuestions.length) {
         listQuestions(globalQuestions);
       } else {
-        showResults();
+        showResults(quizGlobal);
       }
     });
   }
 
-  function showResults() {
+  function showResults(quiz) {
     const main = document.querySelector(".main");
     main.style.display = 'block';
     main.innerHTML = `
       <div class="result">
         <h2>Quiz Completed</h2>
-        <p>You scored ${score} out of 10</p>
+        <h3>You scored...</h3>
+        <div class="header__category" id="headerCategory2">
+          <div class="icon__frame" id="iconFrame2">
+            <img class="category__img" src="" alt="Image" id="categoryImg2" />
+          </div>
+          <span class="category__title" id="categoryTitle2"></span>
+        </div>
+        <p>${score} out of 10</p>
         <button id="restart">Restart</button>
       </div>
     `;
     preview.style.display = 'none';
-  
+    showHeader(quiz);
+
     document.getElementById("restart").addEventListener("click", () => {
       location.reload(); // Or show the category screen again
     });

@@ -14,6 +14,9 @@ let currentQuestionIndex = 0;
 let score = 0;
 
 function changeBackground() {
+  let resultContainer = document.querySelector('.result__container');
+  let resultParagraph = document.querySelector('.result_container p');
+  console.log(resultParagraph);
   let currentIndexParagraph = document.querySelector('.question-container p');
   let progressBar = document.querySelector('.main__progress');
   let answers = document.querySelectorAll('.answers li');
@@ -43,6 +46,10 @@ function changeBackground() {
       currentIndexParagraph.style.color = 'hsl(219deg 13% 44%)';
       progressBar.style.backgroundColor = 'hsl(0deg 100% 100%)';
     }
+
+    resultContainer ? resultContainer.style.backgroundColor = 'hsl(0deg 100% 100%)' : null;
+    resultParagraph ? resultParagraph.style.color = 'hsl(219deg 13% 44%)' : null;
+
   } else {
 
     body.style.backgroundColor = 'hsl(216deg 25% 25%)';
@@ -52,7 +59,7 @@ function changeBackground() {
       option.style.color = 'hsl(0deg 100% 100%)';
     })
     mainSubtitle.style.color = 'hsl(216deg 47% 78%)';
-    
+
     let bgImage = getComputedStyle(body).backgroundImage;
     let newImagePath = bgImage.replace('light', 'dark');
     body.style.backgroundImage = `${newImagePath}`;
@@ -67,6 +74,8 @@ function changeBackground() {
       currentIndexParagraph.style.color = 'hsl(216deg 47% 78%)';
       progressBar.style.backgroundColor = 'hsl(215deg 27% 32%)';
     }
+    resultContainer ? resultContainer.style.backgroundColor = 'hsl(215deg 27% 32%)' : null;
+    resultParagraph ? resultParagraph.style.color = 'hsl(216deg 47% 78%)' : null;
 
   }
 }
@@ -301,6 +310,7 @@ async function startQuiz() {
     document.getElementById("restart").addEventListener("click", () => {
       location.reload(); // Or show the category screen again
     });
+    changeBackground();
   }
   
   

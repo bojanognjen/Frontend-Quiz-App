@@ -15,7 +15,7 @@ let score = 0;
 
 function changeBackground() {
   let resultContainer = document.querySelector('.result__container');
-  let resultParagraph = document.querySelector('.result_container p');
+  let resultParagraph = document.querySelector('.result__paragraph');
   console.log(resultParagraph);
   let currentIndexParagraph = document.querySelector('.question-container p');
   let progressBar = document.querySelector('.main__progress');
@@ -299,7 +299,7 @@ async function startQuiz() {
             <span class="category__title" id="categoryTitle2"></span>
           </div>
           <h4>${score}</h4>
-          <p>out of 10</p>
+          <p class="result__paragraph">out of 10</p>
         </div>
         <button class="submitAnswer" id="restart">Play again</button>
       </div>

@@ -1,12 +1,64 @@
 const main = document.querySelector('.main');
-let options = document.querySelectorAll(".main__options > div");
+let options = document.querySelectorAll(".option");
 const preview = document.querySelector('.preview');
+const switchInput = document.querySelector('.form-check-input');
+const body = document.querySelector('body');
+const mainSubtitle = document.querySelector('.main__subtitle');
+let light = document.querySelectorAll('.light');
+let dark = document.querySelectorAll('.dark');
 
 let quizGlobal = null;
 let globalQuestions = null;
 let currentCategory = null;
 let currentQuestionIndex = 0;
 let score = 0;
+
+function changeBackground() {
+  let answers = document.querySelectorAll('.answer li');
+  
+  if (!switchInput.checked) {
+
+    body.style.backgroundColor = 'hsl(220deg 38% 97%)';
+    body.style.color = 'hsl(216deg 25% 25%)';
+    options.forEach(option => {
+      option.style.backgroundColor = 'hsl(0deg 100% 100%)';
+      option.style.color = 'hsl(216deg 25% 25%)';
+    });
+    mainSubtitle.style.color = 'hsl(219deg 13% 44%)';
+    let bgImage = getComputedStyle(body).backgroundImage;
+    let newImagePath = bgImage.replace('dark', 'light');
+    body.style.backgroundImage = `${newImagePath}`;
+    light.forEach(l => {
+      l.style.display = 'none';
+    });
+    dark.forEach(d => {
+      d.style.display = 'block';
+    });
+
+  } else {
+
+    body.style.backgroundColor = 'hsl(216deg 25% 25%)';
+    body.style.color = 'hsl(0deg 100% 100%)';
+    options.forEach(option => {
+      option.style.backgroundColor = 'hsl(215deg 27% 32%)';
+      option.style.color = 'hsl(0deg 100% 100%)';
+    })
+    mainSubtitle.style.color = 'hsl(216deg 47% 78%)';
+    let bgImage = getComputedStyle(body).backgroundImage;
+    let newImagePath = bgImage.replace('light', 'dark');
+    body.style.backgroundImage = `${newImagePath}`;
+    dark.forEach(d => {
+      d.style.display = 'none';
+    });
+    light.forEach(l => {
+      l.style.display = 'block';
+    });
+
+  }
+}
+
+
+switchInput.addEventListener('click', changeBackground);
 
 function resetQuizState(category) {
     currentCategory = category;

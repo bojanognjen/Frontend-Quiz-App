@@ -200,6 +200,10 @@ body {
   height: 1.6rem;
 }
 
+.light {
+  display:block;
+}
+
 .dark {
   display: none;
 }

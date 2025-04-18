@@ -14,17 +14,21 @@ let currentQuestionIndex = 0;
 let score = 0;
 
 function changeBackground() {
-  let answers = document.querySelectorAll('.answer li');
-  
+  let currentIndexParagraph = document.querySelector('.question-container p');
+  let progressBar = document.querySelector('.main__progress');
+  let answers = document.querySelectorAll('.answers li');
+  let combinedOptions = [...options, ...answers];
+
   if (!switchInput.checked) {
 
     body.style.backgroundColor = 'hsl(220deg 38% 97%)';
     body.style.color = 'hsl(216deg 25% 25%)';
-    options.forEach(option => {
+    combinedOptions.forEach(option => {
       option.style.backgroundColor = 'hsl(0deg 100% 100%)';
       option.style.color = 'hsl(216deg 25% 25%)';
     });
     mainSubtitle.style.color = 'hsl(219deg 13% 44%)';
+
     let bgImage = getComputedStyle(body).backgroundImage;
     let newImagePath = bgImage.replace('dark', 'light');
     body.style.backgroundImage = `${newImagePath}`;
@@ -35,15 +39,20 @@ function changeBackground() {
       d.style.display = 'block';
     });
 
+    if (progressBar || currentIndexParagraph) {
+      currentIndexParagraph.style.color = 'hsl(219deg 13% 44%)';
+      progressBar.style.backgroundColor = 'hsl(0deg 100% 100%)';
+    }
   } else {
 
     body.style.backgroundColor = 'hsl(216deg 25% 25%)';
     body.style.color = 'hsl(0deg 100% 100%)';
-    options.forEach(option => {
+    combinedOptions.forEach(option => {
       option.style.backgroundColor = 'hsl(215deg 27% 32%)';
       option.style.color = 'hsl(0deg 100% 100%)';
     })
     mainSubtitle.style.color = 'hsl(216deg 47% 78%)';
+    
     let bgImage = getComputedStyle(body).backgroundImage;
     let newImagePath = bgImage.replace('light', 'dark');
     body.style.backgroundImage = `${newImagePath}`;
@@ -53,6 +62,11 @@ function changeBackground() {
     light.forEach(l => {
       l.style.display = 'block';
     });
+    
+    if (progressBar || currentIndexParagraph) {
+      currentIndexParagraph.style.color = 'hsl(216deg 47% 78%)';
+      progressBar.style.backgroundColor = 'hsl(215deg 27% 32%)';
+    }
 
   }
 }
@@ -257,6 +271,8 @@ async function startQuiz() {
         }
       },2100);
     });
+
+    changeBackground();
   }
 
   function showResults(quiz) {

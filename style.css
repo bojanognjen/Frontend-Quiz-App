@@ -306,7 +306,7 @@ body {
 }
 
 .selected,
-.option:hover {
+.option:hover:not(.submitAnswer) {
   outline: 3px solid var(--purple-600);
 }
 

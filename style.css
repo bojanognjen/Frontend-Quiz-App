@@ -257,6 +257,8 @@ body {
   align-items: center;
   gap: 1.6rem;
   cursor: pointer;
+  outline: 3px solid transparent;
+  transition: outline-color 600ms ease-in;
 }
 
 .icon__frame {
@@ -365,6 +367,7 @@ body {
 .option-frame {
   color: var(--grey-500);
   background-color: var(--grey-50);
+  transition: background-color 600ms, color 600ms ease-in;
 }
 
 .alert-message {

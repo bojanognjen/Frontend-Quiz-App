@@ -12,11 +12,11 @@ let globalQuestions = null;
 let currentCategory = null;
 let currentQuestionIndex = 0;
 let score = 0;
+let hover = 0;
 
 function changeBackground() {
   let resultContainer = document.querySelector('.result__container');
   let resultParagraph = document.querySelector('.result__paragraph');
-  console.log(resultParagraph);
   let currentIndexParagraph = document.querySelector('.question-container p');
   let progressBar = document.querySelector('.main__progress');
   let answers = document.querySelectorAll('.answers li');
@@ -184,6 +184,20 @@ async function startQuiz() {
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
   }
+
+  function cancelHover(li) {
+    document.addEventListener('click', (event)=> { 
+      if (Array.from(li).some(el => el === event.target || el.firstElementChild?.contains(event.target))) return;
+      let selectedLi = Array.from(li).find(l => {
+        return l.classList.contains('selected');
+      });
+      if(selectedLi) {
+        selectedLi.classList.remove('selected');
+        selectedLi.firstElementChild.style.backgroundColor = 'hsl(0deg 100% 100%)';
+        selectedLi.firstElementChild.style.color = 'hsl(219deg 13% 44%)';
+      }
+    })
+  }
   
   function showQuestion(question) {
     preview.innerHTML = `
@@ -239,15 +253,26 @@ async function startQuiz() {
 }, 2);
 
 const alertMessage = document.querySelector('.alert-message');
-  
-    document.querySelectorAll(".answers li").forEach(li => {
-      li.addEventListener("click", () => {
-        document.querySelectorAll(".answers li").forEach(el => el.classList.remove("selected"));
-        li.classList.add("selected");
+let combinedLi = [...li, ...divLi];
+    combinedLi.forEach(l => {
+      l.addEventListener("click", () => {
+        document.querySelectorAll(".answers li").forEach(el => {
+          el.classList.remove("selected")
+          el.lastElementChild.style.backgroundColor = 'hsl(0deg 100% 100%)';
+          el.lastElementChild.style.color = 'hsl(219deg 13% 44%)';
+        });
+        if (l.tagName === 'DIV') {
+          let nesto = l.parentElement;
+          l.style.backgroundColor = 'hsl(277deg 91% 56%)';
+          l.style.color = 'hsl(0deg 100% 100%)';
+        } else {
+          l.classList.add('selected');
+          l.firstElementChild.style.backgroundColor = 'hsl(277deg 91% 56%)';
+          l.firstElementChild.style.color = 'hsl(0deg 100% 100%)';
+        }
         alertMessage.style.display = 'none';
       });
     });
-  
 
     let submitAnswer = document.querySelector(".submitAnswer");
     submitAnswer.addEventListener("click", () => {
@@ -276,6 +301,10 @@ const alertMessage = document.querySelector('.alert-message');
   
       currentQuestionIndex++;
       submitAnswer.style.pointerEvents = 'none';
+      li.forEach(l => {
+        l.style.pointerEvents = 'none';
+      }
+      )
       setTimeout(()=>{
         if (currentQuestionIndex < globalQuestions.length) {
           listQuestions(globalQuestions);
@@ -286,6 +315,7 @@ const alertMessage = document.querySelector('.alert-message');
     });
 
     changeBackground();
+    cancelHover(li);
   }
 
   function showResults(quiz) {

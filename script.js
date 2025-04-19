@@ -237,17 +237,20 @@ async function startQuiz() {
        return;               // exit early so you don’t bump past 100
      }
 }, 2);
+
+const alertMessage = document.querySelector('.alert-message');
   
     document.querySelectorAll(".answers li").forEach(li => {
       li.addEventListener("click", () => {
         document.querySelectorAll(".answers li").forEach(el => el.classList.remove("selected"));
         li.classList.add("selected");
+        alertMessage.style.display = 'none';
       });
     });
   
-    const alertMessage = document.querySelector('.alert-message');
 
-    document.querySelector(".submitAnswer").addEventListener("click", () => {
+    let submitAnswer = document.querySelector(".submitAnswer");
+    submitAnswer.addEventListener("click", () => {
       const selected = document.querySelector(".answers li.selected");
       if (!selected) {
         alertMessage.style.display = 'flex';
@@ -272,6 +275,7 @@ async function startQuiz() {
       }
   
       currentQuestionIndex++;
+      submitAnswer.style.pointerEvents = 'none';
       setTimeout(()=>{
         if (currentQuestionIndex < globalQuestions.length) {
           listQuestions(globalQuestions);

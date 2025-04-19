@@ -215,6 +215,7 @@ body {
   background-image: var(--bs-form-switch-bg);
   width: 3.2rem;
   height: 2rem;
+  cursor: pointer;
 }
 
  .form-check-input:focus {

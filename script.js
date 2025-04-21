@@ -22,6 +22,7 @@ function changeBackground() {
   let answers = document.querySelectorAll('.answers li');
   let iconFrames = document.querySelectorAll('.icon__frame');
   let combinedOptions = [...options, ...answers];
+  let optionFrames = document.querySelectorAll('option-frame');
 
   if (!switchInput.checked) {
 
@@ -51,7 +52,7 @@ function changeBackground() {
     resultContainer ? resultContainer.style.backgroundColor = 'hsl(0deg 100% 100%)' : null;
     resultParagraph ? resultParagraph.style.color = 'hsl(219deg 13% 44%)' : null;
 
-    iconFrames.forEach(icon => {
+    optionFrames.forEach(icon => {
       icon.style.backgroundColor = 'hsl(220deg 38% 97%)';
     });
 
@@ -82,13 +83,12 @@ function changeBackground() {
     resultContainer ? resultContainer.style.backgroundColor = 'hsl(215deg 27% 32%)' : null;
     resultParagraph ? resultParagraph.style.color = 'hsl(216deg 47% 78%)' : null;
 
-    iconFrames.forEach(icon => {
+    optionFrames.forEach(icon => {
       icon.style.backgroundColor = 'hsl(0deg 100% 100%)';
     });
 
   }
 }
-
 
 switchInput.addEventListener('click', changeBackground);
 
@@ -148,8 +148,10 @@ function showHeader(quiz) {
     el.classList.add("icon");
   });
   
+  console.log(categoryImg);
 
   Array.from(iconFrame).forEach(el => {
+    console.log(el);
     switch (quiz.title.toLowerCase()) {
       case "html":
         el.style.backgroundColor = 'hsl(27deg 100% 96%)';

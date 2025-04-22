@@ -214,21 +214,25 @@ async function startQuiz() {
   function showQuestion(question) {
     preview.innerHTML = `
       <div class="question-container">
-        <p>Question ${currentQuestionIndex + 1} of ${globalQuestions.length}</p>
-        <h2 class="question__title">${escapeHTML(question.question)}</h2>
-        <div class="main__progress"></div>
-        <ul class="answers">
-          ${question.options.map((opt, idx) => 
-            `<li class="category__title" data-index="${idx}" data-label="${escapeHTML(opt)}">
-                <div class="icon__frame option-frame"></div>
-                ${escapeHTML(opt)}
-            </li>`
-          ).join("")}
-          <button class="option category__title submitAnswer">Submit answer</button>
-        </ul>
-        <div class="alert-message">
-          <img src="assets/images/icon-error.svg">
-          <span class="alert-select category__title">Please select an answer</span>
+        <div class="flex-1">
+          <p>Question ${currentQuestionIndex + 1} of ${globalQuestions.length}</p>
+          <h2 class="question__title">${escapeHTML(question.question)}</h2>
+          <div class="main__progress"></div>
+        </div>
+        <div class="flex-2">
+          <ul class="answers">
+            ${question.options.map((opt, idx) =>
+              `<li class="category__title" data-index="${idx}" data-label="${escapeHTML(opt)}">
+                  <div class="icon__frame option-frame"></div>
+                  ${escapeHTML(opt)}
+              </li>`
+            ).join("")}
+            <button class="option category__title submitAnswer">Submit answer</button>
+          </ul>
+          <div class="alert-message">
+            <img src="assets/images/icon-error.svg">
+            <span class="alert-select category__title">Please select an answer</span>
+          </div>
         </div>
       </div>
     `;
@@ -335,19 +339,23 @@ let combinedLi = [...li, ...divLi];
     main.style.display = 'block';
     main.innerHTML = `
       <div class="result">
-        <h2>Quiz Completed</h2>
-        <h3>You scored...</h3>
-        <div class="result__container">
-          <div class="header__category" id="headerCategory2">
-            <div class="icon__frame option-frame" id="iconFrame2">
-              <img class="category__img" src="" alt="Image" id="categoryImg2" />
-            </div>
-            <span class="category__title" id="categoryTitle2"></span>
-          </div>
-          <h4>${score}</h4>
-          <p class="result__paragraph">out of 10</p>
+        <div class="flex-1">
+          <h2>Quiz Completed</h2>
+          <h3>You scored...</h3>
         </div>
-        <button class="submitAnswer" id="restart">Play again</button>
+        <div class="flex-2">
+          <div class="result__container">
+            <div class="header__category" id="headerCategory2">
+              <div class="icon__frame option-frame" id="iconFrame2">
+                <img class="category__img" src="" alt="Image" id="categoryImg2" />
+              </div>
+              <span class="category__title" id="categoryTitle2"></span>
+            </div>
+            <h4>${score}</h4>
+            <p class="result__paragraph">out of 10</p>
+          </div>
+          <button class="submitAnswer" id="restart">Play again</button>
+        </div>
       </div>
     `;
     preview.style.display = 'none';

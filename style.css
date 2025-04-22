@@ -96,13 +96,13 @@
 }
 
 body {
-  /* 4. Add accessible line-height */
+  
   line-height: 1.5;
-  /* 5. Improve text rendering */
+
   -webkit-font-smoothing: antialiased;
 }
 
-/* 6. Improve media defaults */
+
 img,
 picture,
 video,
@@ -112,7 +112,7 @@ svg {
   max-width: 100%;
 }
 
-/* 7. Inherit fonts for form controls */
+
 input,
 button,
 textarea,
@@ -120,7 +120,7 @@ select {
   font: inherit;
 }
 
-/* 8. Avoid text overflows */
+
 p,
 h1,
 h2,
@@ -131,7 +131,7 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/* 9. Improve line wrapping */
+
 p {
   text-wrap: pretty;
 }
@@ -142,14 +142,6 @@ h4,
 h5,
 h6 {
   text-wrap: balance;
-}
-
-/*
-    10. Create a root stacking context
-  */
-#root,
-#__next {
-  isolation: isolate;
 }
 
 html {
@@ -227,6 +219,14 @@ body {
   padding: 3.2rem 0;
   display: grid;
   gap: 4rem;
+}
+
+.flex-1 {
+  flex-grow: 1;
+}
+
+.flex-2 {
+  flex-grow: 1;
 }
 
 .main__title {
@@ -454,3 +454,27 @@ body {
   background-color: var(--red-500) !important;
   color: var(--white) !important;
 }
+
+@media (min-width: 48em) {
+  /* Styles for tablets and up */
+  body {
+    background-image: url(assets/images/pattern-background-tablet-dark.svg);
+  }
+
+  .main {
+    display: flex;
+  }
+
+  .question-container {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 64em) {
+  /* Styles for desktops and up */
+  body {
+    background-image: url(assets/images/pattern-background-desktop-dark.svg);
+  }
+}
+
+

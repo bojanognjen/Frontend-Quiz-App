@@ -20,9 +20,7 @@ function changeBackground() {
   let currentIndexParagraph = document.querySelector('.question-container p');
   let progressBar = document.querySelector('.main__progress');
   let answers = document.querySelectorAll('.answers li');
-  let iconFrames = document.querySelectorAll('.icon__frame');
   let combinedOptions = [...options, ...answers];
-  let optionFrames = document.querySelectorAll('option-frame');
 
   if (!switchInput.checked) {
 
@@ -52,10 +50,6 @@ function changeBackground() {
     resultContainer ? resultContainer.style.backgroundColor = 'hsl(0deg 100% 100%)' : null;
     resultParagraph ? resultParagraph.style.color = 'hsl(219deg 13% 44%)' : null;
 
-    optionFrames.forEach(icon => {
-      icon.style.backgroundColor = 'hsl(220deg 38% 97%)';
-    });
-
   } else {
 
     body.style.backgroundColor = 'hsl(216deg 25% 25%)';
@@ -82,10 +76,6 @@ function changeBackground() {
     }
     resultContainer ? resultContainer.style.backgroundColor = 'hsl(215deg 27% 32%)' : null;
     resultParagraph ? resultParagraph.style.color = 'hsl(216deg 47% 78%)' : null;
-
-    optionFrames.forEach(icon => {
-      icon.style.backgroundColor = 'hsl(0deg 100% 100%)';
-    });
 
   }
 }
@@ -151,7 +141,6 @@ function showHeader(quiz) {
   console.log(categoryImg);
 
   Array.from(iconFrame).forEach(el => {
-    console.log(el);
     switch (quiz.title.toLowerCase()) {
       case "html":
         el.style.backgroundColor = 'hsl(27deg 100% 96%)';
@@ -295,6 +284,7 @@ let combinedLi = [...li, ...divLi];
       const selected = document.querySelector(".answers li.selected");
       if (!selected) {
         alertMessage.style.display = 'flex';
+        return;
       };
     //   const selectedIndex = parseInt(selected.dataset.index);
 

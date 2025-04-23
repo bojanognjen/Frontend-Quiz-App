@@ -258,7 +258,6 @@ body {
 .option {
   background-color: var(--blue-850);
   border-radius: 1.2rem;
-  height: 7.2rem;
   padding: 1.6rem;
   display: flex;
   align-items: center;
@@ -266,6 +265,8 @@ body {
   cursor: pointer;
   outline: 3px solid transparent;
   transition: outline-color 600ms ease-in;
+  height: 6rem;
+  max-height: 104px;
 }
 
 .icon__frame {
@@ -298,7 +299,7 @@ body {
 }
 
 .category__title {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
 }
 
@@ -356,11 +357,6 @@ body {
   display: grid;
   gap: 1.6rem;
   padding: 0;
-}
-
-.option {
-  height: 6rem;
-  max-height: 104px;
 }
 
 .submitAnswer {
@@ -483,6 +479,10 @@ body {
 
   .question-container {
     flex-direction: row;
+  }
+
+  .result {
+    display: flex;
   }
 
   .answers {
